@@ -48,8 +48,8 @@ function processFirstItem(stringList, callback) {
  * [2] Invoking `processLength` passing `[]` and `(num) => "There are " + num`,
  * should return "There are 0".
 */
-function processLength(/* CODE HERE */) {
-  /* CODE HERE */
+function processLength(list, callback) {
+  return callback(list.length);
 }
 
 /**
@@ -66,8 +66,8 @@ function processLength(/* CODE HERE */) {
  * Invoking `processLastItem` passing `['foo', 'bar']` and `(str) => str + str`,
  * should return 'barbar'.
 */
-function processLastItem(/* CODE HERE */) {
-  /* CODE HERE */
+function processLastItem(stringList, callback) {
+  return callback(stringList[stringList.length-1]);
 }
 
 /**
@@ -88,8 +88,8 @@ function processLastItem(/* CODE HERE */) {
  * [2] Invoking `processSum` passing `-5`, '-1', and `(num) => num + 1000`,
  * should return 994.
 */
-function processSum(/* CODE HERE */) {
-  /* CODE HERE */
+function processSum(num1, num2, callback) {
+  return callback(num1 + num2);
 }
 
 /**
@@ -110,8 +110,8 @@ function processSum(/* CODE HERE */) {
  * [2] Invoking `processProduct` passing 25 and 0 and `(num) => num + 1000`,
  * should return 1000.
 */
-function processProduct(/* CODE HERE */) {
-  /* CODE HERE */
+function processProduct(num1, num2, callback) {
+  return callback(num1 * num2);
 }
 
 /**
@@ -155,9 +155,16 @@ function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS
  * 
  * [2] Invoking `lowerCaseStrings` with `['a', 'b', 'c' ]` will return `[ 'a', 'b', 'c' ]`.
 */
-function lowerCaseStrings(/* code here */) {
-  /* code here */
+function lowerCaseStrings(strings) {
+  let lowerCaseArray = [];
+  strings.forEach(function(element){
+    lowerCaseArray.push(element.toLowerCase());
+  })
+  return lowerCaseArray;
+  //.forEach
 }
+
+//console.log(lowerCaseStrings([ 'Orange', 'APPLE', 'banana', 'mAnGo']))
 
 /**
  * ### Challenge `isItAnApple`
@@ -174,9 +181,19 @@ function lowerCaseStrings(/* code here */) {
  * 
  * [2] Invoking `isItAnApple` with `['a', 'b', 'c' ]` will return `[ false, false, false ]`.
 */
-function isItAnApple(/* code here */) {
-  /* code here */
-}
+function isItAnApple(strings) {
+    let trueArray = strings.map(function(element){
+    if(element === 'apple'){
+      return true;
+    } else {
+      return false;
+    }
+  })//end of map function
+  return trueArray;
+  //.map()
+}// end of isItApple function
+
+console.log(isItAnApple([ 'orange', 'apple', 'banana', 'apples', 'apple', 'mango' ]))
 
 /**
  * ### Challenge `removeApple`
@@ -194,9 +211,15 @@ function isItAnApple(/* code here */) {
  * 
  * [2] Invoking `removeApple` with `['a', 'b', 'c' ]` will return `[ 'a', 'b', 'c' ]`.
 */
-function removeApple(/* code here */) {
-  /* code here */
+function removeApple(strings) {
+  let removeApples = strings.filter(function(element){
+    return element !== 'apple';
+  })
+  return removeApples;
+  //.filter
 }
+
+console.log(removeApple([ 'orange', 'apple', 'banana', 'apples', 'apple', 'mango' ]))
 
 /**
  * ### Challenge `stringSmash`
@@ -213,9 +236,15 @@ function removeApple(/* code here */) {
  * 
  * [2] Invoking `stringSmash` with `['a', 'b', 'c' ]` will return `abc`.
 */
-function stringSmash(/* code here */) {
-  /* code here */
+function stringSmash(strings) {
+  let singleString = strings.reduce(function(accumulator, item){
+    return accumulator + item;
+  })
+    return singleString;
+  //.reduce();
 }
+
+console.log(stringSmash(['a', 'b', 'c' ]));
 
 // A local community center is holding a fund raising 5k fun run and has invited
 // 50 small businesses to make a small donation on their behalf for some much needed
@@ -232,9 +261,16 @@ function stringSmash(/* code here */) {
  * @returns an array with all the runners' full names in the following format: "Smith, John".
  * The full names appear in the array in the same order the runners appear in the `runners` array.
 */
-function getFullNames(/* CODE HERE */) {
-  /* CODE HERE */
+function getFullNames(arrayList) {
+  //console.log(arrayList);
+  let fullName = arrayList.map(function(runner){
+    return `${runner.last_name}, ${runner.first_name}`
+  })
+  //console.log(fullName);
+  return fullName;
 }
+
+//console.log(getFullNames())
 
 /**
  * ### Challenge `firstNamesAllCaps`
@@ -248,8 +284,11 @@ function getFullNames(/* CODE HERE */) {
  * @returns an array with all the runners' first names in ALL CAPS.
  * The first names appear in the array in the same order the runners appear in the `runners` array.
 */
-function firstNamesAllCaps(/* CODE HERE */) {
-  /* CODE HERE */
+function firstNamesAllCaps(arrayTest) {
+    let allCapsName = arrayTest.map(function(name){
+      return name.first_name.toUpperCase();
+    })
+  return allCapsName;
 }
 
 /**
@@ -266,8 +305,15 @@ function firstNamesAllCaps(/* CODE HERE */) {
  * @returns an array containing only the runners that use the given `tShirtSize`.
  * The runners in the array appear in the same order they appear in the `runners` array.
 */
-function getRunnersByTShirtSize(/* CODE HERE */) {
-  /* CODE HERE */
+function getRunnersByTShirtSize(runners, tshirtSize) {
+  let size = runners.filter(function(runner){
+    return runner.shirt_size === tshirtSize;
+  })
+  //console.log(size);
+  return size;
+  //return size;
+  //.filter.
+  // runners.shirt_size
 }
 
 /**
@@ -295,7 +341,7 @@ function tallyUpDonations(/* CODE HERE */) {
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
  * 1. What is the difference between counter1 and counter2?
- * 
+ *        
  * 2. Which of the two uses a closure? How can you tell?
  * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
